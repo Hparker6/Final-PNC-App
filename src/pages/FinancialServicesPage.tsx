@@ -22,14 +22,12 @@ import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import SchoolIcon from '@mui/icons-material/School';
 import SavingsIcon from '@mui/icons-material/Savings';
 import SecurityIcon from '@mui/icons-material/Security';
-import StarIcon from '@mui/icons-material/Star';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import LocalOfferIcon from '@mui/icons-material/LocalOffer';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import SearchIcon from '@mui/icons-material/Search';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
-import { AnimatedCard } from '../components/AnimatedCard';
 import { HomeButton } from '../components/HomeButton';
 import { Footer } from '../components/Footer';
 import { useState, useMemo } from 'react';
@@ -444,7 +442,7 @@ const FinancialServicesPage = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState(0);
   
-  const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+  const handleTabChange = (_event: React.SyntheticEvent, newValue: number) => {
     setActiveTab(newValue);
   };
 
