@@ -7,14 +7,20 @@ export const HomeButton = () => {
 
   return (
     <Button
-      variant="outlined"
+      variant="contained"
       startIcon={<HomeIcon />}
       onClick={() => navigate('/')}
       sx={{
         position: 'absolute',
-        top: 16,
-        right: 16,
+        top: 64, // adjusted top position to prevent overlay with page titles
+        left: 16,
         zIndex: 1000,
+        bgcolor: '#F58025', // updated to website's primary orange color
+        color: 'black', // added black text color
+        '&:hover': {
+          bgcolor: '#F58025', // updated to website's primary orange color
+          color: 'black',
+        },
       }}
     >
       Home

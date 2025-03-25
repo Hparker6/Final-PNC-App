@@ -10,7 +10,7 @@ import { StatementsPage } from './pages/StatementsPage';
 import { LoansPage } from './pages/LoansPage';
 import CreditScorePage from './pages/CreditScorePage';
 import HolistatExplainerPage from './pages/HolistatExplainerPage';
-import { FinancialServicesPage } from './pages/RecommendedProductsPage';
+import FinancialServicesPage from './pages/FinancialServicesPage';
 import ELearningPage from './pages/ELearningPage';
 import AccountsPage from './pages/AccountsPage';
 import { CssBaseline } from '@mui/material';
@@ -18,7 +18,7 @@ import { CssBaseline } from '@mui/material';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#f58220',
+      main: '#F58025',
     },
     secondary: {
       main: '#005587',

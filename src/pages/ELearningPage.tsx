@@ -1,6 +1,7 @@
 import { Box, Typography, Grid, CardContent, Chip } from '@mui/material';
 import { AnimatedCard } from '../components/AnimatedCard';
 import { HomeButton } from '../components/HomeButton';
+import { Footer } from '../components/Footer';
 import SchoolIcon from '@mui/icons-material/School';
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 
@@ -57,108 +58,123 @@ const ELearningPage = () => {
   const creditVideos = videos.filter(video => video.category === 'Credit').length;
 
   return (
-    <Box sx={{ p: 3, maxWidth: 1400, margin: '0 auto', position: 'relative' }}>
-      <HomeButton />
-      
-      <Typography variant="h4" gutterBottom sx={{ mb: 4 }}>
-        Financial Education Center
-      </Typography>
+    <Box sx={{ 
+      display: 'flex', 
+      flexDirection: 'column', 
+      minHeight: '100vh'
+    }}>
+      <Box sx={{ 
+        p: 3, 
+        maxWidth: 1400, 
+        margin: '0 auto', 
+        width: '100%',
+        flex: 1 
+      }}>
+        <HomeButton />
+        
+        <Box sx={{ pt: 12, flex: 1 }}>
+          <Typography variant="h4" gutterBottom sx={{ mb: 4 }}>
+            eLearning
+          </Typography>
 
-      {/* Summary Cards */}
-      <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} sm={6} md={4}>
-          <AnimatedCard>
-            <CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                <PlayCircleIcon sx={{ fontSize: 32, color: 'primary.main', mr: 1 }} />
-                <Typography variant="h6">Total Lessons</Typography>
-              </Box>
-              <Typography variant="h4" color="primary">
-                {totalVideos}
-              </Typography>
-              <Typography variant="body2" color="textSecondary">
-                Educational videos
-              </Typography>
-            </CardContent>
-          </AnimatedCard>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <AnimatedCard>
-            <CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                <SchoolIcon sx={{ fontSize: 32, color: 'primary.main', mr: 1 }} />
-                <Typography variant="h6">Topics</Typography>
-              </Box>
-              <Typography variant="h4" color="primary">
-                {categories.length}
-              </Typography>
-              <Typography variant="body2" color="textSecondary">
-                Different categories
-              </Typography>
-            </CardContent>
-          </AnimatedCard>
-        </Grid>
-        <Grid item xs={12} sm={6} md={4}>
-          <AnimatedCard>
-            <CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                <SchoolIcon sx={{ fontSize: 32, color: 'primary.main', mr: 1 }} />
-                <Typography variant="h6">Credit Education</Typography>
-              </Box>
-              <Typography variant="h4" color="primary">
-                {creditVideos}
-              </Typography>
-              <Typography variant="body2" color="textSecondary">
-                Credit-focused lessons
-              </Typography>
-            </CardContent>
-          </AnimatedCard>
-        </Grid>
-      </Grid>
-
-      <Grid container spacing={3}>
-        {videos.map((video) => (
-          <Grid item xs={12} md={6} key={video.title}>
+          {/* Summary Cards */}
+          <Grid container spacing={3} sx={{ mb: 4 }}>
+          <Grid item xs={12} sm={6} md={4}>
             <AnimatedCard>
               <CardContent>
-                <Box sx={{ position: 'relative', paddingBottom: '56.25%', height: 0, mb: 2 }}>
-                  <Box
-                    component="iframe"
-                    sx={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
-                      width: '100%',
-                      height: '100%',
-                      border: 0,
-                      borderRadius: 1,
-                    }}
-                    src={`https://www.youtube.com/embed/${video.videoId}`}
-                    title={video.title}
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                  />
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                  <PlayCircleIcon sx={{ fontSize: 32, color: 'primary.main', mr: 1 }} />
+                  <Typography variant="h6">Total Lessons</Typography>
                 </Box>
-                <Typography variant="h6" gutterBottom>
-                  {video.title}
+                <Typography variant="h4" color="primary">
+                  {totalVideos}
                 </Typography>
-                <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
-                  {video.description}
+                <Typography variant="body2" color="textSecondary">
+                  Educational videos
                 </Typography>
-                <Chip
-                  label={video.category}
-                  sx={{
-                    bgcolor: `${categoryColors[video.category as keyof typeof categoryColors]}15`,
-                    color: categoryColors[video.category as keyof typeof categoryColors],
-                    borderColor: categoryColors[video.category as keyof typeof categoryColors],
-                  }}
-                  variant="outlined"
-                />
               </CardContent>
             </AnimatedCard>
           </Grid>
-        ))}
-      </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <AnimatedCard>
+              <CardContent>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                  <SchoolIcon sx={{ fontSize: 32, color: 'primary.main', mr: 1 }} />
+                  <Typography variant="h6">Topics</Typography>
+                </Box>
+                <Typography variant="h4" color="primary">
+                  {categories.length}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  Different categories
+                </Typography>
+              </CardContent>
+            </AnimatedCard>
+          </Grid>
+          <Grid item xs={12} sm={6} md={4}>
+            <AnimatedCard>
+              <CardContent>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
+                  <SchoolIcon sx={{ fontSize: 32, color: 'primary.main', mr: 1 }} />
+                  <Typography variant="h6">Credit Education</Typography>
+                </Box>
+                <Typography variant="h4" color="primary">
+                  {creditVideos}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  Credit-focused lessons
+                </Typography>
+              </CardContent>
+            </AnimatedCard>
+          </Grid>
+        </Grid>
+
+        <Grid container spacing={3}>
+          {videos.map((video) => (
+            <Grid item xs={12} md={6} key={video.title}>
+              <AnimatedCard>
+                <CardContent>
+                  <Box sx={{ position: 'relative', paddingBottom: '56.25%', height: 0, mb: 2 }}>
+                    <Box
+                      component="iframe"
+                      sx={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        border: 0,
+                        borderRadius: 1,
+                      }}
+                      src={`https://www.youtube.com/embed/${video.videoId}`}
+                      title={video.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </Box>
+                  <Typography variant="h6" gutterBottom>
+                    {video.title}
+                  </Typography>
+                  <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
+                    {video.description}
+                  </Typography>
+                  <Chip
+                    label={video.category}
+                    sx={{
+                      bgcolor: `${categoryColors[video.category as keyof typeof categoryColors]}15`,
+                      color: categoryColors[video.category as keyof typeof categoryColors],
+                      borderColor: categoryColors[video.category as keyof typeof categoryColors],
+                    }}
+                    variant="outlined"
+                  />
+                </CardContent>
+              </AnimatedCard>
+            </Grid>
+          ))}
+        </Grid>
+        </Box>
+      </Box>
+      <Footer />
     </Box>
   );
 };

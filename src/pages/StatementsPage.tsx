@@ -24,6 +24,7 @@ import FolderIcon from '@mui/icons-material/Folder';
 import { useState } from 'react';
 import { HomeButton } from '../components/HomeButton';
 import { AnimatedCard } from '../components/AnimatedCard';
+import { Footer } from '../components/Footer';
 
 export const StatementsPage = () => {
   const [selectedAccount, setSelectedAccount] = useState('all');
@@ -99,153 +100,168 @@ export const StatementsPage = () => {
     totalStatements: statements.length,
     totalAccounts: accounts.length,
     latestStatement: statements[0].period,
-    totalSize: statements.reduce((sum, s) => sum + parseInt(s.size), 0),
+    totalSize: statements.reduce((sum, s) => sum + parseInt(s.size.replace(' KB', '')), 0),
   };
 
   return (
-    <Box sx={{ p: 3, maxWidth: 1400, margin: '0 auto', position: 'relative' }}>
-      <HomeButton />
-      
-      <Typography variant="h4" gutterBottom sx={{ mb: 4 }}>
-        Account Statements
-      </Typography>
+    <Box sx={{ 
+      display: 'flex', 
+      flexDirection: 'column', 
+      minHeight: '100vh'
+    }}>
+      <Box sx={{ 
+        p: 3, 
+        maxWidth: 1400, 
+        margin: '0 auto', 
+        width: '100%',
+        flex: 1 
+      }}>
+        <HomeButton />
+        
+        <Box sx={{ pt: 12 }}>
+          <Typography variant="h4" gutterBottom sx={{ mb: 4 }}>
+            Account Statements
+          </Typography>
 
-      {/* Summary Cards */}
-      <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} sm={6} md={3}>
-          <AnimatedCard>
-            <CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                <DescriptionIcon sx={{ fontSize: 32, color: 'primary.main', mr: 1 }} />
-                <Typography variant="h6">Total Statements</Typography>
-              </Box>
-              <Typography variant="h4" color="primary">
-                {statementStats.totalStatements}
-              </Typography>
-              <Typography variant="body2" color="textSecondary">
-                Available for download
-              </Typography>
-            </CardContent>
-          </AnimatedCard>
+          {/* Summary Cards */}
+          <Grid container spacing={3} sx={{ mb: 4 }}>
+          <Grid item xs={12} sm={6} md={3}>
+            <AnimatedCard sx={{ height: '100%' }}>
+              <CardContent sx={{ height: 280, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', p: 3 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+                  <DescriptionIcon sx={{ fontSize: 32, color: 'primary.main', mr: 1 }} />
+                  <Typography variant="h6">Total Statements</Typography>
+                </Box>
+                <Typography variant="h4" color="primary" sx={{ my: 4 }}>
+                  {statementStats.totalStatements}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  Available for download
+                </Typography>
+              </CardContent>
+            </AnimatedCard>
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <AnimatedCard sx={{ height: '100%' }}>
+              <CardContent sx={{ height: 280, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', p: 3 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+                  <FolderIcon sx={{ fontSize: 32, color: 'primary.main', mr: 1 }} />
+                  <Typography variant="h6">Total Size</Typography>
+                </Box>
+                <Typography variant="h4" color="primary" sx={{ my: 4 }}>
+                  {Math.round(statementStats.totalSize / 1024)} MB
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  Total statement size
+                </Typography>
+              </CardContent>
+            </AnimatedCard>
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <AnimatedCard sx={{ height: '100%' }}>
+              <CardContent sx={{ height: 280, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', p: 3 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+                  <AssessmentIcon sx={{ fontSize: 32, color: 'primary.main', mr: 1 }} />
+                  <Typography variant="h6">Latest Period</Typography>
+                </Box>
+                <Typography variant="h4" color="primary" sx={{ my: 4 }}>
+                  {statementStats.latestStatement}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  Most recent statement
+                </Typography>
+              </CardContent>
+            </AnimatedCard>
+          </Grid>
+          <Grid item xs={12} sm={6} md={3}>
+            <AnimatedCard sx={{ height: '100%' }}>
+              <CardContent sx={{ height: 280, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', p: 3 }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', mb: 3 }}>
+                  <FolderIcon sx={{ fontSize: 32, color: 'primary.main', mr: 1 }} />
+                  <Typography variant="h6">Accounts</Typography>
+                </Box>
+                <Typography variant="h4" color="primary" sx={{ my: 4 }}>
+                  {statementStats.totalAccounts}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  With statements
+                </Typography>
+              </CardContent>
+            </AnimatedCard>
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <AnimatedCard>
-            <CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                <FolderIcon sx={{ fontSize: 32, color: 'primary.main', mr: 1 }} />
-                <Typography variant="h6">Total Size</Typography>
-              </Box>
-              <Typography variant="h4" color="primary">
-                {Math.round(statementStats.totalSize / 1024)} MB
-              </Typography>
-              <Typography variant="body2" color="textSecondary">
-                Combined statement size
-              </Typography>
-            </CardContent>
-          </AnimatedCard>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <AnimatedCard>
-            <CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                <AssessmentIcon sx={{ fontSize: 32, color: 'primary.main', mr: 1 }} />
-                <Typography variant="h6">Latest Period</Typography>
-              </Box>
-              <Typography variant="h4" color="primary">
-                {statementStats.latestStatement}
-              </Typography>
-              <Typography variant="body2" color="textSecondary">
-                Most recent statement
-              </Typography>
-            </CardContent>
-          </AnimatedCard>
-        </Grid>
-        <Grid item xs={12} sm={6} md={3}>
-          <AnimatedCard>
-            <CardContent>
-              <Box sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                <FolderIcon sx={{ fontSize: 32, color: 'primary.main', mr: 1 }} />
-                <Typography variant="h6">Accounts</Typography>
-              </Box>
-              <Typography variant="h4" color="primary">
-                {statementStats.totalAccounts}
-              </Typography>
-              <Typography variant="body2" color="textSecondary">
-                With statements
-              </Typography>
-            </CardContent>
-          </AnimatedCard>
-        </Grid>
-      </Grid>
 
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <AnimatedCard>
-            <CardContent>
-              <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
-                <Typography variant="h6">Statement History</Typography>
-                <FormControl sx={{ minWidth: 200 }}>
-                  <InputLabel>Filter by Account</InputLabel>
-                  <Select
-                    value={selectedAccount}
-                    onChange={(e) => setSelectedAccount(e.target.value)}
-                    label="Filter by Account"
-                  >
-                    <MenuItem value="all">All Accounts</MenuItem>
-                    {accounts.map((account) => (
-                      <MenuItem key={account.id} value={account.id}>
-                        {account.name}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Box>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <AnimatedCard>
+              <CardContent>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 3 }}>
+                  <Typography variant="h6">Statement History</Typography>
+                  <FormControl sx={{ minWidth: 200 }}>
+                    <InputLabel>Filter by Account</InputLabel>
+                    <Select
+                      value={selectedAccount}
+                      onChange={(e) => setSelectedAccount(e.target.value)}
+                      label="Filter by Account"
+                    >
+                      <MenuItem value="all">All Accounts</MenuItem>
+                      {accounts.map((account) => (
+                        <MenuItem key={account.id} value={account.id}>
+                          {account.name}
+                        </MenuItem>
+                      ))}
+                    </Select>
+                  </FormControl>
+                </Box>
 
-              <TableContainer component={Paper} elevation={0}>
-                <Table>
-                  <TableHead>
-                    <TableRow>
-                      <TableCell>Account</TableCell>
-                      <TableCell>Period</TableCell>
-                      <TableCell>Date Range</TableCell>
-                      <TableCell>Size</TableCell>
-                      <TableCell align="right">Actions</TableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {filteredStatements.map((statement, index) => (
-                      <TableRow key={index}>
-                        <TableCell>{statement.account}</TableCell>
-                        <TableCell>
-                          <Chip
-                            label={statement.period}
-                            color="primary"
-                            size="small"
-                            variant="outlined"
-                          />
-                        </TableCell>
-                        <TableCell>
-                          {statement.startDate} - {statement.endDate}
-                        </TableCell>
-                        <TableCell>{statement.size}</TableCell>
-                        <TableCell align="right">
-                          <Button
-                            startIcon={<DownloadIcon />}
-                            variant="contained"
-                            size="small"
-                          >
-                            Download
-                          </Button>
-                        </TableCell>
+                <TableContainer component={Paper} elevation={0}>
+                  <Table>
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Account</TableCell>
+                        <TableCell>Period</TableCell>
+                        <TableCell>Date Range</TableCell>
+                        <TableCell>Size</TableCell>
+                        <TableCell align="right">Actions</TableCell>
                       </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </CardContent>
-          </AnimatedCard>
+                    </TableHead>
+                    <TableBody>
+                      {filteredStatements.map((statement, index) => (
+                        <TableRow key={index}>
+                          <TableCell>{statement.account}</TableCell>
+                          <TableCell>
+                            <Chip
+                              label={statement.period}
+                              color="primary"
+                              size="small"
+                              variant="outlined"
+                            />
+                          </TableCell>
+                          <TableCell>
+                            {statement.startDate} - {statement.endDate}
+                          </TableCell>
+                          <TableCell>{statement.size}</TableCell>
+                          <TableCell align="right">
+                            <Button
+                              startIcon={<DownloadIcon />}
+                              variant="contained"
+                              size="small"
+                            >
+                              Download
+                            </Button>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </CardContent>
+            </AnimatedCard>
+          </Grid>
         </Grid>
-      </Grid>
+        </Box>
+      </Box>
+      <Footer />
     </Box>
   );
 };

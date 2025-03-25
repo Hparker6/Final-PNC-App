@@ -3,7 +3,7 @@ import { createTheme } from '@mui/material/styles';
 export const theme = createTheme({
   palette: {
     primary: {
-      main: '#F58220', // PNC Orange
+      main: '#F58025', // PNC Orange
       contrastText: '#fff',
     },
     secondary: {
@@ -82,7 +82,7 @@ export const theme = createTheme({
         root: {
           color: '#666',
           '&.Mui-selected': {
-            color: '#F58220',
+            color: '#F58025',
           },
         },
         label: {

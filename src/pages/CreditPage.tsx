@@ -11,11 +11,12 @@ import {
   Stack,
   Grid,
 } from '@mui/material';
+import { Footer } from '../components/Footer';
 
 export const CreditPage = () => {
   const [message, setMessage] = useState('');
   const [chatHistory, setChatHistory] = useState<Array<{ type: 'user' | 'ai'; content: string }>>([]);
-  const creditScore = 750; // Credit score
+  const creditScore = 825; // Updated Credit score from 750 to 825
 
   const handleSendMessage = () => {
     if (!message.trim()) return;
@@ -29,7 +30,7 @@ export const CreditPage = () => {
       if (message.toLowerCase().includes('improve')) {
         response += "To improve your credit score, consider: 1) Making payments on time 2) Keeping credit utilization low 3) Maintaining older credit accounts 4) Limiting new credit applications.";
       } else if (message.toLowerCase().includes('good')) {
-        response += "A score of 750 is considered very good! It's well above the national average and should qualify you for favorable rates.";
+        response += "A score of 825 is considered excellent! It's well above the national average and should qualify you for favorable rates.";
       } else {
         response += "I'm here to help you understand your credit score and provide personalized advice. Feel free to ask specific questions!";
       }
@@ -46,6 +47,7 @@ export const CreditPage = () => {
   };
 
   const getScoreLabel = (score: number) => {
+    if (score >= 800) return 'Exceptional';
     if (score >= 750) return 'Excellent';
     if (score >= 700) return 'Very Good';
     if (score >= 650) return 'Good';
@@ -54,12 +56,17 @@ export const CreditPage = () => {
   };
 
   return (
-    <Box>
+    <Box sx={{ 
+      p: 3, 
+      display: 'flex',
+      flexDirection: 'column',
+      minHeight: '100vh'
+    }}>
       <Typography variant="h4" component="h1" gutterBottom>
         Credit Score Overview
       </Typography>
 
-      <Grid container spacing={3}>
+      <Grid container spacing={3} sx={{ flex: 1 }}>
         <Grid item xs={12} md={6}>
           <Card>
             <CardContent sx={{ textAlign: 'center', py: 4 }}>
@@ -165,6 +172,7 @@ export const CreditPage = () => {
           </Card>
         </Grid>
       </Grid>
+      <Footer />
     </Box>
   );
 };

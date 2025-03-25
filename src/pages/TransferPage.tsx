@@ -18,6 +18,7 @@ import {
 import { useState } from 'react';
 import { HomeButton } from '../components/HomeButton';
 import { AnimatedCard } from '../components/AnimatedCard';
+import { Footer } from '../components/Footer';
 import SendIcon from '@mui/icons-material/Send';
 import AccountBalanceIcon from '@mui/icons-material/AccountBalance';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
@@ -77,12 +78,21 @@ export const TransferPage = () => {
   const totalTransferred = recentTransfers.reduce((sum, transfer) => sum + transfer.amount, 0);
 
   return (
-    <Box sx={{ p: 3, maxWidth: 1400, margin: '0 auto', position: 'relative' }}>
+    <Box sx={{ 
+      p: 3, 
+      maxWidth: 1400, 
+      margin: '0 auto', 
+      position: 'relative',
+      display: 'flex',
+      flexDirection: 'column',
+      minHeight: '100vh'
+    }}>
       <HomeButton />
       
-      <Typography variant="h4" gutterBottom sx={{ mb: 4 }}>
-        Transfer Money
-      </Typography>
+      <Box sx={{ pt: 12, flex: 1 }}>
+        <Typography variant="h4" gutterBottom sx={{ mb: 4 }}>
+          Transfer Money
+        </Typography>
 
       {/* Summary Cards */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
@@ -246,6 +256,8 @@ export const TransferPage = () => {
           </AnimatedCard>
         </Grid>
       </Grid>
+      </Box>
+      <Footer />
     </Box>
   );
 };
